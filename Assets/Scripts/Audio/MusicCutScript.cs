@@ -8,26 +8,33 @@ public class MusicCutScript : MonoBehaviour
     string [] notes;
     string musicpath, musicfilename;
     public string [] TimeAppear;
-    void Start()
+    int TimeAppearCol = 2;
+    int countlines;
+
+    void Awake()
     {
         musicfilename = "InfinitePower_TheFatRat_cut.txt";
         musicpath = Application.dataPath + "/AudioDemoWithContent/" + musicfilename;
-        ReadFromFile();
+
+        countlines = File.ReadAllLines(musicpath).Length;
+
+        MusicCut(musicpath);
     }
-    public void ReadFromFile()
+
+    public void MusicCut(string path)
     {
-        notes = File.ReadAllLines(musicpath);
+        notes = File.ReadAllLines(path);
 
         int row = 0;
         int col = 0;
-        string [] TA = new string[40];
+        string [] TA = new string[countlines - 1]; //exclude the first row
 
         foreach (string line in notes)
         {
             foreach (string word in line.Split("\t"))
             {
-                if((row != 0) && (col == 2)){ //Time Appear row 0 col 2
-                    TA[row] = word;
+                if((row != 0) && (col == TimeAppearCol)){ //Time Appear row 0 col 2
+                    TA[row-1] = word;
                 }
                 col++;
             }
@@ -35,7 +42,11 @@ public class MusicCutScript : MonoBehaviour
             col = 0;
         }
         TimeAppear = TA;
-        
+        // return TA;
     }
 
+    public void test()
+    {
+
+    }
 }
