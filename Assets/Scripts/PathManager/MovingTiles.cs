@@ -5,52 +5,91 @@ using System;
 public class MovingTiles : MonoBehaviour
 {
     public GameObject tiles;
+    public GameObject notetiles;
     public float topleft = -200;
     public float topright = 200;
-    public float timeBetweenGenerate;
-    private float generateTime;
+    private int tileslayer = -1;
+    private int noteslayer = -2;
     
+    public float timeBetweenGenerate;
+    private double generateTime;
+
     [SerializeField] MusicCutScript musiccut;
 
-    float[] TA;
+    private double[] TA;
+    private int timeround = 2;
+    int count;
+    int flag;
 
-    int count = 0;
-    void OnEnable()
+    void Start()
     {
-        TA = new float [musiccut.TimeAppear.Length];
+        //Time stamp of notes array
+        count = 0;
+        flag = 1; //right, 0 is left
+        TA = new double [musiccut.TimeAppear.Length];
+
         for (int i = 0; i < musiccut.TimeAppear.Length; i++)
         {
-            float temp = float.Parse(musiccut.TimeAppear[i]);
-            TA[i] = temp;
+            TA[i] = musiccut.TimeAppear[i];
         }
-        // print( Math.Round(TA[0], 2));
     
     }
     void Update()
     {
-        // print(TA[0]);
-
-        // print(Time.time);
-
-        if ( Math.Round(Time.time,2) == Math.Round(TA[count], 2))
+        //Generate tiles until the last notes
+        if( (Math.Round(Time.time, timeround) > generateTime))
         {
-            print("reach");
-            Generate();
-            generateTime = Time.time + timeBetweenGenerate;
-            count++;
+            if ( Math.Round(Time.time, timeround) <= TA[TA.Length-1])
+            {
+                print(count);
+                if (flag == 1) //if flag = 1, right, else left
+                {
+                    GenerateTilesRight();
+                }
+                else
+                {
+                    GenerateTilesLeft();
+                }
+                generateTime = Math.Round(Time.time, timeround) + timeBetweenGenerate;
+            }
+            
         }
-
-        // for (int i = 0; i < TA.Length; i++)
-        // {
-        //     if (Time.time == TA[i])
-        //     {
-        //         Generate();
-        //     }
-        // }
+        //Generate notes
+        if (Math.Round(Time.time, timeround) == TA[count])
+        {
+            if ((count % 2) == 0) //index even
+            {
+                GenerateNoteRight();
+                flag = 0;
+            }
+            else //index odd
+            {
+                GenerateNoteLeft();
+                flag = 1;
+            }
+            
+            if (count < TA.Length-1)
+            {
+                count++;
+            }
+            
+        }
     }
 
-    void Generate()
+    void GenerateNoteRight()
     {
-        GameObject tile = Instantiate(tiles, transform.position + new Vector3(topright, 0, 0), transform.rotation);
+        Instantiate(notetiles, transform.position + new Vector3(topright, 0, noteslayer), transform.rotation);
+    }
+    void GenerateNoteLeft()
+    {
+        Instantiate(notetiles, transform.position + new Vector3(topleft, 0, noteslayer), transform.rotation);
+    }
+    void GenerateTilesLeft()
+    {
+        Instantiate(tiles, transform.position + new Vector3(topleft, 0, tileslayer), transform.rotation);
+    }   
+    void GenerateTilesRight()
+    {
+        Instantiate(tiles, transform.position + new Vector3(topright, 0, tileslayer), transform.rotation);
     }
 }

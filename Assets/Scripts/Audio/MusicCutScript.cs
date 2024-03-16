@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using System.IO;
 
@@ -7,9 +6,11 @@ public class MusicCutScript : MonoBehaviour
 {
     string [] notes;
     string musicpath, musicfilename;
-    public string [] TimeAppear;
+    public double [] TimeAppear;
     int TimeAppearCol = 2;
     int countlines;
+
+    public int timeround = 2;
 
     void Awake()
     {
@@ -27,14 +28,15 @@ public class MusicCutScript : MonoBehaviour
 
         int row = 0;
         int col = 0;
-        string [] TA = new string[countlines - 1]; //exclude the first row
+        double [] TA = new double[countlines - 1]; //exclude the first row
 
         foreach (string line in notes)
         {
             foreach (string word in line.Split("\t"))
             {
                 if((row != 0) && (col == TimeAppearCol)){ //Time Appear row 0 col 2
-                    TA[row-1] = word;
+                    double temp = double.Parse(word);
+                    TA[row-1] = Math.Round(temp, timeround);
                 }
                 col++;
             }

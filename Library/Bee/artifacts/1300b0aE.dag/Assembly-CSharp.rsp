@@ -388,6 +388,7 @@
 "Assets/Scripts/Audio/MusicCutScript.cs"
 "Assets/Scripts/BackgroundScroller.cs"
 "Assets/Scripts/CameraMovement/CameraMovement.cs"
+"Assets/Scripts/CharacterManager/CharacterManager.cs"
 "Assets/Scripts/PathManager/MovingTiles.cs"
 "Assets/Scripts/PathManager/PathManager.cs"
 "Assets/Scripts/SceneManagerScript.cs"

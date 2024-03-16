@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioMangerScript : MonoBehaviour
 {
+    [SerializeField] MusicCutScript musiccut;
+    private int timeround = 2; 
 
     [Header("=== Audio Source ===")]
     [SerializeField] AudioSource musicSource;
@@ -14,6 +17,13 @@ public class AudioMangerScript : MonoBehaviour
     private void Start()
     {
         musicSource.clip = background;
-        musicSource.Play();
+        
+    }
+    void Update()
+    {
+        if ( Math.Round(Time.time, timeround) == musiccut.TimeAppear[1]) //temporarily
+        {
+            musicSource.Play();
+        }
     }
 }
