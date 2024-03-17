@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bokens : MonoBehaviour
 {
+    public Sprite Perfect;
     // Start is called before the first frame update
     void Start()
     {

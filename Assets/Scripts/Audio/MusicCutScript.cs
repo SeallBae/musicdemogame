@@ -12,7 +12,7 @@ public class MusicCutScript : MonoBehaviour
 
     public int timeround = 2;
 
-    void Awake()
+    void OnEnable()
     {
         musicfilename = "InfinitePower_TheFatRat_cut.txt";
         musicpath = Application.dataPath + "/AudioDemoWithContent/" + musicfilename;

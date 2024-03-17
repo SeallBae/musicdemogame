@@ -3,14 +3,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;   
 
-
 public class TilesManager : MonoBehaviour
 {
+    [Header("=== Tiles and Notes ===")]
     public GameObject tile;
     public GameObject notetile;
     public GameObject character;
 
     [SerializeField] Notes notescript;
+    [SerializeField] MusicCutScript musiccut;
 
     private GameObject gamescene;
 
@@ -26,9 +27,7 @@ public class TilesManager : MonoBehaviour
     private int pointtodisappear = 1000; //point when tiles disappear;
     
     public float timeBetweenGenerate;
-    private double generateTime;
-
-    [SerializeField] MusicCutScript musiccut;
+    private double generateTime;    
 
     private double[] TA;
     private int timeround = 2;
@@ -39,7 +38,6 @@ public class TilesManager : MonoBehaviour
     {
         count = 0;
         flag = 1; //right, 0 is left
-
         //Array of notes time stamp
         TA = new double [musiccut.TimeAppear.Length];
         for (int i = 0; i < musiccut.TimeAppear.Length; i++)
@@ -66,7 +64,6 @@ public class TilesManager : MonoBehaviour
                 }
                 generateTime = Math.Round(Time.time, timeround) + timeBetweenGenerate;
             }
-         
         }
         
         //Generate notes
@@ -82,7 +79,6 @@ public class TilesManager : MonoBehaviour
                 GenerateNoteLeft();
                 flag = 1;
             }
-            
             if (count < TA.Length-1)
             {
                 count++;
@@ -97,10 +93,9 @@ public class TilesManager : MonoBehaviour
                 tiles[i].transform.localScale += new Vector3(-0.5f, -0.5f, 0);
                 if (gamescene.transform.position.y - tiles[i].transform.position.y > pointtodisappear)
                 {
-                    tiles[i].SetActive(false);
+                    HideTilesAndNote(tiles[i]);
                 }
             }
-            
         }
         
         //make notes fall and blur when passed
@@ -112,7 +107,7 @@ public class TilesManager : MonoBehaviour
                 notes[i].transform.localScale += new Vector3(-0.5f, -0.5f, 0);
                 if (gamescene.transform.position.y - notes[i].transform.position.y > pointtodisappear)
                 {
-                    notes[i].SetActive(false);
+                    HideTilesAndNote(notes[i]);
                 }
             }
         }
@@ -133,5 +128,9 @@ public class TilesManager : MonoBehaviour
     void GenerateTilesLeft()
     {
         tiles.Add(Instantiate(tile, transform.position + new Vector3(topleft, 0, tileslayer), transform.rotation));
-    }   
+    }
+    void HideTilesAndNote(GameObject obj)
+    {
+        obj.SetActive(false);
+    }
 }

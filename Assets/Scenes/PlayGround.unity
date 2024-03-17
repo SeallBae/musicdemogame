@@ -517,6 +517,7 @@ MonoBehaviour:
   NiceNoti: {fileID: 8436706633556590292, guid: 627c0974741385b43a6571d29b740be1, type: 3}
   GoodNoti: {fileID: 4699322343246376329, guid: 43731105da59a4f408a421e6ba27ec4f, type: 3}
   PerfectNoti: {fileID: 2527039848614723617, guid: c638428507719a7428e1dbe5234c2af3, type: 3}
+  notis: []
   point: 0
   musiccut: {fileID: 902076624}
 --- !u!1 &961739749
@@ -928,7 +929,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827604769}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 960, z: 0}
+  m_LocalPosition: {x: 0, y: 1260, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -964,6 +965,7 @@ MonoBehaviour:
   bokenleft: {fileID: 2977447429791261965, guid: ad47e700649916144a02a3037438c616, type: 3}
   bokenright: {fileID: 186429745321120420, guid: 29b9a3b5d1982b14286b1b4f3676e9ce, type: 3}
   bokens: []
+  brokenbokens: []
   PerfectBoken: {fileID: 5639494632377237857, guid: cf3b856ec978818468a083876e5a37b5, type: 3}
   GoodBoken: {fileID: 8391506483250178400, guid: 17122a1219da176429043db702038252, type: 3}
   NiceBoken: {fileID: 7475473220432505677, guid: 8b5a5383e0e266b499ddca5aec0b4672, type: 3}
@@ -982,6 +984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de453ef755282034183005b6baea97ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Perfect: {fileID: 0}
 --- !u!1 &2019123586
 GameObject:
   m_ObjectHideFlags: 0
