@@ -8,6 +8,8 @@ public class CharacterManager : MonoBehaviour
     public GameObject GoodNoti;
     public GameObject PerfectNoti;
     
+    public int point;
+    
     [SerializeField] MusicCutScript musiccut;
     private double [] TA;
     private int timeround = 2;
@@ -37,7 +39,7 @@ public class CharacterManager : MonoBehaviour
 
     void Update()
     {
-        Click();
+        point = Click();
         if ( (count <= TA.Length - 1))
         {
             if (Math.Round(Time.time, timeround) > TA[count]){
@@ -50,23 +52,25 @@ public class CharacterManager : MonoBehaviour
         }
     }
     //Click function
-    public void Click()
+    public int Click()
     {
         if (Input.GetButtonDown("Fire1"))
         {
             int score = Score(Math.Round(Time.time, timeround), TA[count]);
-
             if (score == 2) //Nice
             {
+                
                 Instantiate(NiceNoti, transform.position + new Vector3(0, 0, notislayer), transform.rotation);
                 Move();
                 count++;
+                
             }
             else if(score == 1) //Good
             {
                 Instantiate(GoodNoti, transform.position + new Vector3(0, 0, notislayer), transform.rotation);
                 Move();
                 count++;
+                
             }
             else if(score == 0) //Perfect
             {
@@ -78,7 +82,11 @@ public class CharacterManager : MonoBehaviour
             {
                 print("YOU MISS !!! ");
             }
-
+            return score;
+        }
+        else
+        {
+            return 4; // passed, no click
         }
     }
     //Move function
@@ -86,11 +94,11 @@ public class CharacterManager : MonoBehaviour
     {
         if (Character.transform.position.x == 200)
         {
-            Character.transform.Translate(-400, 0, 0);
+            Character.transform.Translate(-400, 0, 0); //move left
         }
         else if (Character.transform.position.x == -200)
         {
-            Character.transform.Translate(400, 0, 0);
+            Character.transform.Translate(400, 0, 0); //move right
         }
     }
     //Score function

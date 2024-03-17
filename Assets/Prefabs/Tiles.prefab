@@ -93,6 +93,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3358493369478864592}
+  - component: {fileID: 6950731845623331310}
+  - component: {fileID: 8240987675423403530}
   m_Layer: 0
   m_Name: Tiles
   m_TagString: Untagged
@@ -108,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8188897099547435468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: -12600, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -116,3 +118,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6950731845623331310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8188897099547435468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0ebb2bba7743941be758806f5eafb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile: {fileID: 8188897099547435468}
+  character: {fileID: 1013780399848395987, guid: d0b87beeaf26784459ae8d9327e3af45, type: 3}
+  GoodNoti: {fileID: 4699322343246376329, guid: 43731105da59a4f408a421e6ba27ec4f, type: 3}
+  musiccut: {fileID: 8240987675423403530}
+--- !u!114 &8240987675423403530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8188897099547435468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a56f52078d90d4da238dcb939bc1da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeAppear: []
+  timeround: 2
